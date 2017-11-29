@@ -37,11 +37,15 @@ public class Nakato {
 	
 	/**<p>This is where the real min max comes to power, it is an recrusive method!!
 	 * It will compute ALL succesors, no limit implemented at the moment<p>*/
+    
+    //recursive method that is our main AI
+    //computes all posible paths
 	public void computeAllSuccesors(Node father){ 
 		for(int row = 0; row < father.board.length; row++){
 			for(int beg = 0; beg < father.board[row].length; beg++){
 				for(int end = 0; end < father.board[row].length; end++){
-						if(beg>end){
+						//saves time in implementation, no need to calc duplicates
+                  if(beg>end){
 							continue;
 						}
 
@@ -51,11 +55,15 @@ public class Nakato {
 						}
 						
 						father.kids.add(kid);
+                  //how does this work?
+                  //this is the base case
+                  //starts to print the board after the goal is reached
 						if(kid.goalReached()){
 							kid.printBoard();
 							kid.visited = true;
 							continue;
 						}
+                  //enters the reccursive calls
 						else{
 							kid.printBoard();
 							try {
@@ -65,7 +73,9 @@ public class Nakato {
 //								bfr.readLine();  /**If you want to watch the processin detail,you could activate this*/
 								openList.add(kid); //TODO: Provisorisch
 								this.computeAllSuccesors(kid);
-								//Here we will apply the actual min max methods
+								
+                        //Here we will apply the actual min max methods
+                        //This is where our AI makes decisions
 								if(kid.turnMax){
 									max(kid);
 								}
@@ -84,7 +94,9 @@ public class Nakato {
 	
 	public void max(Node n){  /**Will grab the highest scoring child*/
 //		System.out.println("Max");
+//
 		int max = -200;
+      //ternary operator, for each kid in n.kids
 		for(Node kid : n.kids){
 			if(kid.score>max){
 				max=kid.score;
@@ -96,6 +108,7 @@ public class Nakato {
 	
 	public void min(Node n){ /**Will grab the poorest scoring child*/
 //		System.out.println("min");
+//intialize to infinity
 		int min = +200;
 		for(Node kid : n.kids){
 			if(kid.score<min){
@@ -106,7 +119,10 @@ public class Nakato {
 	}
 	
 	
-	/**<p>Is not fully implemented. Dont use it yet<p>*/
+	/**<p>Is not fully implemented. Dont use it yet<p>
+   */
+   //   Not needed
+
 	public void addToOL(Node n){
 		for(Node n2 : openList){
 			if(n.equals(n2)){

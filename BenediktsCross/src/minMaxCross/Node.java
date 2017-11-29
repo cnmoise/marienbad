@@ -21,7 +21,7 @@ public class Node {
 	
 	
 	public Node(int[][] board, Node father) {
-		super();//?
+		super();//? needed
 		this.board = board;
 		this.father = father;
 		if (father==null){
@@ -79,7 +79,9 @@ public class Node {
 	}
 	
 	
-	/**Here is the real crossing*/
+	/**Here is the real crossing
+   cross from beginning to the end
+   */
 	public Node cross(int row, int beginning, int end){
 		try{
 		if(this.crossSimulation(row, beginning, end)){
