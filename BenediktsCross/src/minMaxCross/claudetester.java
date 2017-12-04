@@ -92,8 +92,7 @@ public class claudetester {
     public static int doubleScount(int[][] board)
       {
          int c = 0;
-         boolean noLeft = true;
-         boolean noRight = true;
+         boolean onepartner = false;
       
          for(int i= 0; i < board.length; i++){
          
@@ -106,34 +105,28 @@ public class claudetester {
                if(board[i][j] == 1){
                   
                   //to avoid out of bounds check
-                  if(j>0){
-                     //is the left neighbor a 0
-                      System.out.println(" Check left neigh ");
-                     if(board[i][j-1] == 1)
-                     {
-                        noLeft = false;
-                     }
-                  }
-                  //to avoid out of bounds check
-                  if(j < board[i].length-1 && noLeft){
+                  if(j < board[i].length-1){
+                        System.out.println("enter loop: ");
+                           
                             //is the right neighbor a 0
-                            System.out.println(" Check right neigh ");
-                           if(board[i][j+1] == 1)
+                           if(board[i][j+1] == 1 && !onepartner)
                            {
-                           noRight = false;
+                           onepartner = true;
+                           }
+                           else if(board[i][j+1] == 1 && onepartner)
+                           {
+                           onepartner = false;
                            }
                            
                         }
                   
-                  
-                  
-                  System.out.println("noLeft: "+ noLeft);
-                  System.out.println("noRight: "+ noRight);
+                        System.out.println("onepartner: "+ onepartner);
             }
             System.out.println(); 
          }
          //wait til all the row's been checked to declare a double
          //^ is the exclusive or operator, 
+         /*
             if(noLeft ^ noRight){
                      System.out.println("XOR noLeft: "+ noLeft);
                      System.out.println("XOR noRight: "+ noRight);
@@ -143,7 +136,10 @@ public class claudetester {
          
             noLeft = true;
             noRight = true;
+      */
       
+      } 
       return c;
-      }  
    }
+   
+}
