@@ -119,7 +119,10 @@ public class claudetester {
                            }
                            
                         }
-                  
+                     
+                     //stuff
+                    
+                     
                         System.out.println("onepartner: "+ onepartner);
             }
             System.out.println(); 
