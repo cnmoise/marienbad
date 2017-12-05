@@ -11,12 +11,15 @@ public class claudetester {
    public static void main(String[] args){
          int[][] initialBoard = {
             
-            {0,1,1,0}
+            {0,0,1,1},
+            {0,0,0,1},
+            {0,0,1,0},
+            {0,1,0,1}
    			
             };
          //System.out.println(singleScount(initialBoard));
-         System.out.println(doubleScount(initialBoard));
-
+         //System.out.println(doubleScount(initialBoard));
+         columnCount(initialBoard);
    	}
 
 	/**
@@ -89,6 +92,7 @@ public class claudetester {
        return c;
       }
       
+      /*
     public static int doubleScount(int[][] board)
       {
          int c = 0;
@@ -129,7 +133,7 @@ public class claudetester {
          }
          //wait til all the row's been checked to declare a double
          //^ is the exclusive or operator, 
-         /*
+         
             if(noLeft ^ noRight){
                      System.out.println("XOR noLeft: "+ noLeft);
                      System.out.println("XOR noRight: "+ noRight);
@@ -139,10 +143,93 @@ public class claudetester {
          
             noLeft = true;
             noRight = true;
-      */
       
-      } 
       return c;
-   }
-   
-}
+
+            }*/ 
+           
+           /*
+           example:
+           
+           101
+           001
+           000
+           111
+           -
+           returns
+           
+           213
+           
+           */
+            
+            
+            
+           public static void columnCount(int[][] board){
+           
+           int maxLength = 0;
+                 for (int i = 0; i < board.length; i++) {
+                     if(board[i].length>maxLength){
+                         maxLength = board[i].length;
+                     }
+                 }
+           
+           int[] resultarr= new int[maxLength];
+           
+           for(int i= 0; i < board.length; i++){
+                  for(int j= 0; j < board[i].length; j++){
+                  
+                     if(board[i][j]==1){
+                        resultarr[j]+=1;
+                     }
+                  
+                  }
+                     
+               }
+  
+           for(int l= 0; l < resultarr.length; l++)
+                 {
+                  System.out.print(resultarr[l]);
+
+                 }
+
+          /* 
+           //gives us the length of the last array
+           int v = board.length-1;
+           int b = board[v].length;
+           //create an array to store # of 1's in every col
+           int[] colc = new int[b];
+           
+           //System.out.println(" Board length" + b);
+           //System.out.println(" Board length" + colc.length);
+           
+           for(int i= 0; i < board.length; i++){
+         
+            System.out.print(" i" + i);
+            for(int j= 0; j < board[i].length; j++){
+                  if(board[i][j] == 1){
+                  System.out.print(" j" + j);
+                     colc[j]+= 1;
+                     System.out.print(" colval" + colc[j]);
+                  }
+                  else{
+                     colc[j] = 0;
+                  }
+               }
+            
+            }
+               //to test it
+               System.out.print(" the array : ");
+               for(int l= 0; l < colc.length; l++)
+                 {
+                  System.out.print(colc[l]);
+
+                 }
+                 
+                 */
+                 
+                 
+                 
+                 
+           }
+        }//end of claudetester
+  
