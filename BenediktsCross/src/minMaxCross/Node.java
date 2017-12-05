@@ -103,6 +103,80 @@ public class Node {
 			return null;
 		}
 	}
+   
+   //how many single strokes (ones which have not been crossed out) are on board
+   /*
+   001
+   011
+   101
+   010
+   
+   returns 4
+   */
+   public int singleScount(int[][] board)
+   {
+      int c = 0;
+      //assuming we don't change our board structure
+      for(int i= 0; i < board.length; i++){
+         for(int j= 0; j < board.length; j++){
+         
+            board[i][j] == 1;
+            c++;
+         }
+      }
+      
+    return c;
+   }
+   
+   //how many double strokes are on board
+   /*
+   0010
+   0110
+   1011
+   0100
+   
+   returns 2
+   */
+   /*
+   0010
+   0110
+   1011
+   0111 <- special case
+   or
+   1111 <- would count as 3?
+   
+   returns 4 or 3?
+   */
+   public int doubleScount()
+   {
+   
+   
+    return 0;
+   }
+   
+   //how many strokes are in a particular column?
+   /*
+   010
+   110
+   011
+   100
+   
+   returns 231
+   
+   translate board - easier to calculate
+   1
+   101
+   1011
+   
+   
+   0001
+   0101
+   1011
+   */
+    public int columnCount()
+   {
+    return 0;
+   }
 	
 	/**prints the board of THIS node*/
 	public void printBoard(){ 
