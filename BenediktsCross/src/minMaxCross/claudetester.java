@@ -4,25 +4,46 @@ import java.io.*;
 import java.util.Base64;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.Scanner;
+import java.util.*;
+
 
 
 public class claudetester {
 
    public static void main(String[] args){
+         
+         int n, count = 0, a;
+        String x = "";
+         
          int[][] initialBoard = {
-            
             {0,0,1,1},
-            {0,0,0,1},
-            {0,0,1,0},
-            {0,1,0,1}
-   			
+            {1,1,1,1},
+            {1,0,0,1}
+                        
             };
          //System.out.println(singleScount(initialBoard));
          //System.out.println(doubleScount(initialBoard));
-         columnCount(initialBoard);
-   	}
+         //columnCount(initialBoard);
+         //{0,1,0,1}
+         
+         
+         
+         BoardToBin(initialBoard);
+         
+         
+
+         
+         }
 
 	/**
+   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+   {0,0,1,1},
+            {0,0,0,1},
+            {0,0,1,0},
+            {0,1,0,1}
+   
    `        {1},
    			{1,1},
    			{1,1,1}
@@ -33,6 +54,90 @@ public class claudetester {
      0's are stalks that have been crossed
      beg 
    */
+
+   /*
+   Method does 3 things
+   -analyzes gameboard & adds up adjacent stalks to make
+   -translates the counted numbers into binary to make a new board
+   -add rows when we have gaps
+   */
+//int[][]
+   public static void BoardToBin(int[][] board)
+   {
+        int n, count = 0, a;
+        //determining size of array depends on construction of board
+        //tricky
+        int[] adjacentStalks = new int[9];
+        int aSi = 0;
+        //how estimate
+        int[][] binboard = new int[adjacentStalks.length][9];
+        Stack<Integer> stack = new Stack<Integer>();
+ 
+         //we only care if it DOES have a neighbor
+ 
+        for(int i= 0; i < board.length; i++){
+           // System.out.print(" i" + i);
+            for(int j= 0; j < board[i].length; j++){
+               //System.out.print(" j" + j);
+               
+               if(board[i][j] == 1){
+                     adjacentStalks[aSi]+= 1;
+                  }
+               else{//we know its a 0 & we need to start counting in a new space
+                  aSi++;
+                  //gets rid of extra spaces
+                  if(j>0){
+                     if(board[i][j-1] == 0){
+                        aSi--;}}
+                  //System.out.print(" aSi" + aSi);
+               }
+               //System.out.println();
+            }
+            //we know that we have switched rows
+            aSi++;
+         }
+         int q = 0;
+         for(int i= 0; i < binboard.length; i++){
+            for(int j= 0; j < binboard[i].length; j++){
+               
+               System.out.print(" dec being converted: " + adjacentStalks[j] +" its bin val is:");
+               while (adjacentStalks[j] != 0)
+                {
+                  int d = adjacentStalks[j] % 2;
+                  stack.push(d);
+                  adjacentStalks[j] /= 2;
+                }
+               while (!(stack.isEmpty() ))
+                {
+                  //System.out.print(" q" + q);
+                  binboard[i][j]=stack.pop();
+                  System.out.print(binboard[i][j]);
+                  //q++;
+                }
+                System.out.println(" ");
+                }
+                
+        }
+         System.out.println(" current binary board: ");
+         for(int i= 0; i < binboard.length; i++){
+            for(int j= 0; j < binboard[i].length; j++){
+               System.out.print(binboard[i][j]);
+            }
+            System.out.println();
+        }
+    
+         
+/*
+         for(int i= 0; i < adjacentStalks.length; i++){        
+            System.out.print(" " + adjacentStalks[i]);
+         }
+         */
+         
+               
+        }
+
+
+
 
    //how many single strokes (ones which have not been crossed out) are on board
    /*
@@ -227,7 +332,7 @@ public class claudetester {
                  
                  */
                  
-                 
+              
                  
                  
            }
