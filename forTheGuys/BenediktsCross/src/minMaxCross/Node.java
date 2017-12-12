@@ -62,10 +62,10 @@ public class Node {
 			else{
 				return +100;
 			}
-			//eternal Node
+			//Terminal Node
 		}
 		if(this.oneMultiServeralSingle()){
-			//eternal Node
+			//Terminal Node
 			if(this.turnMax){
 				return +100;
 			}
